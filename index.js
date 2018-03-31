@@ -86,7 +86,15 @@ controller.on('bot_channel_join', function (bot, message) {
 });
 
 controller.hears('hello', 'direct_message', function (bot, message) {
-    bot.reply(message, 'Hello!');
+    bot.reply(message, 'What is my purpose?');
+});
+
+controller.hears('\\?', 'direct_message', function (bot, message) {
+    bot.reply(message, 'Try harder!');
+});
+
+controller.hears('you pass butter', 'direct_message', function (bot, message) {
+    bot.reply(message, 'Oh my god...');
 });
 
 
@@ -94,15 +102,15 @@ controller.hears('hello', 'direct_message', function (bot, message) {
  * AN example of what could be:
  * Any un-handled direct mention gets a reaction and a pat response!
  */
-//controller.on('direct_message,mention,direct_mention', function (bot, message) {
-//    bot.api.reactions.add({
-//        timestamp: message.ts,
-//        channel: message.channel,
-//        name: 'robot_face',
-//    }, function (err) {
-//        if (err) {
-//            console.log(err)
-//        }
-//        bot.reply(message, 'I heard you loud and clear boss.');
-//    });
-//});
+controller.on('direct_message,mention,direct_mention', function (bot, message) {
+   bot.api.reactions.add({
+       timestamp: message.ts,
+       channel: message.channel,
+       name: 'robot_face',
+   }, function (err) {
+       if (err) {
+           console.log(err)
+       }
+       bot.reply(message, 'I heard you loud and clear boss.');
+   });
+});
